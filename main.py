@@ -11,7 +11,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Real-Time Notifications API")
 
-# CORS
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,12 +21,11 @@ app.add_middleware(
 )
 
 
-# Startup/Shutdown Events
 @app.on_event("startup")
 async def startup():
     await postgres_notifier.connect()
     
-    # Create PostgreSQL trigger function
+    
     async with asyncpg.create_pool(ASYNC_DATABASE_URL) as pool:
         async with pool.acquire() as conn:
             await conn.execute("""
@@ -62,9 +61,11 @@ async def shutdown():
     await postgres_notifier.close()
 
 
+
 @app.get("/")
 def root():
     return {"message": "Welcome to Fastapi Notification System"}
+
 
 app.include_router(notification_router)
 app.include_router(websocket_router)
