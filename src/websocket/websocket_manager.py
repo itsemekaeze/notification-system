@@ -104,6 +104,3 @@ class PostgresNotifier:
 postgres_notifier = PostgresNotifier()
 
 
-
-
-
