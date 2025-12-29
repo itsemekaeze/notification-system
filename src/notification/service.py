@@ -1,6 +1,5 @@
-from fastapi import APIRouter, Depends, HTTPException
-from typing import List
-from src.notification.models import NotificationCreate, NotificationResponse
+from fastapi import Depends, HTTPException
+from src.notification.models import NotificationCreate
 from src.database.core import get_db
 from sqlalchemy.orm import Session
 from src.entities.notification import Notification
