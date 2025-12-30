@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import asyncpg
-from src.database.core import Base, engine, SessionLocal, ASYNC_DATABASE_URL
+from src.database.core import Base, engine, ASYNC_DATABASE_URL
 from src.websocket.websocket_manager import postgres_notifier
 from src.notification.controller import router as notification_router
 from src.websocket.websocket_manager import router as websocket_router
