@@ -4,8 +4,7 @@ from src.database.core import get_db
 from sqlalchemy.orm import Session
 from src.entities.notification import Notification
 
-
-async def create_notifications(notification: NotificationCreate, db: Session = Depends(get_db)):
+def create_notifications(notification: NotificationCreate, db: Session = Depends(get_db)):
     """Create a new notification (triggers real-time delivery via PostgreSQL NOTIFY)"""
     db_notification = Notification(**notification.dict())
     db.add(db_notification)

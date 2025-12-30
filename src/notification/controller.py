@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 @router.post("/", response_model=NotificationResponse)
-async def create_notification(notification: NotificationCreate, db: Session = Depends(get_db)):
+def create_notification(notification: NotificationCreate, db: Session = Depends(get_db)):
     return create_notifications(notification, db)
 
 @router.get("/{user_id}", response_model=List[NotificationResponse])
